@@ -23,11 +23,11 @@ export const SITE = {
   name: 'JABS',
   title: 'Just another blog site',
   description: 'Personal blog for my musings',
-  url: 'https://dissurender.github.io',
+  url: 'https://blog-site-dissurender.vercel.app',
   githubUrl: 'https://github.com/Dissurender/',
   listDrafts: true,
   image:
-    'https://raw.githubusercontent.com/one-aalam/astro-ink/main/public/astro-banner.png',
+    'https://github.com/Dissurender/blog-site/blob/main/public/favicon-32x32.png',
   // YT video channel Id (used in media.astro)
   ytChannelId: '',
   // Optional, user/author settings (example)
