@@ -19,7 +19,7 @@ description: Adventures in transforming a key-value dump into a relational datab
 Getting started with this program I had the goal of ingesting the data from [HackerNews](https://news.ycombinator.com) created by [ycombinator](https://www.ycombinator.com) and providing a fully fetched comment tree upon querying a story.
 
 ---
-  
+
 As I began setting up the server with expressjs I discovered three things, one being that the Hackernews API is really a memory dump of their internal database hosted on Firebase. Two, that the documentation for said API linked in the footer of [HackerNews](https://news.ycombinator.com) is not entirely straight foward.. I actually found another version of documentation that was more useful [Hackernews.api-docs.io](https://hackernews.api-docs.io/v0/overview/introduction) that had more information on what to expect from fetching data. And three, because of the responses from the Firebase API are chunked, we have to handle a Bufferstream in Javascript(very fun without types!). So below is a function that I used to handle chunked responses.
 
 ```js
@@ -28,6 +28,7 @@ export async function fetchFromHN(id) {
   return await fetch(base + `v0/item/${id}.json`).then(processChunkedResponse);
 }
 ```
+
 ```js
 function processChunkedResponse(response) {
   let text = '';
@@ -134,15 +135,24 @@ Above is where we recurse through comments, and comments' comments, and comments
 
 ---
 
+### Tech Used
+
+The utilities I took advantage of in medium-roast:
+- Prisma ORM for handling the data schema and managing the connection to the database.
+- Docker to containerize a PostgreSQL database given that setting up postgres on debian was a headache.
+- Winston and Morgan packages for logging and StdOut formating.
+- ESLint and Prettier for code formatting and checking.
+
+
 ### Future Improvements
 
 If in the future I can fit this project into my schedule, a few things I want to implement would be:
   - Caching Top Stories for improved availability of the "frontpage"
     + Either use the simple cache I saved in /utils or Redis
-  <br>
+
   - Create a watcher on the endpoint /maxitem
     + This could be implemented similarly to what happens on /secretingest
-  <br>
+
   - Rewrite the schema to handle the self-referencing Comments
 
 
