@@ -1,12 +1,12 @@
 ---
-title: 'About'
-description: 'Techie pondering on unnecessary ideas and utilities.'
----
-
 import DefaultPageLayout from '$/layouts/default.astro';
 import Prose from '$/components/Prose.astro';
 
-<DefaultPageLayout content={{ title: frontmatter.title, description: frontmatter.description }}>
+const title = 'About'
+const description = 'Techie pondering on unnecessary ideas and utilities.'
+---
+
+<DefaultPageLayout content={{ title: title, description: description }}>
 
     <Prose>
         Rhyn Ogg -- [@RhynOgg](https://twitter.com/RhynOgg) -- [Dissurender](https://github.com/Dissurender)

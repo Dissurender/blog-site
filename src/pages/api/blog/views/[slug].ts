@@ -25,10 +25,11 @@ const getViewsBySlug = async (slug: string): Promise<number> => {
 };
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const get: APIRoute = async ({ params, request }) => {
-  return {
-    body: JSON.stringify({
+export const GET: APIRoute = async ({ params, request }) => {
+  return new Response(
+    JSON.stringify({
       views: await getViewsBySlug(params.slug!),
     }),
-  };
+    { status: 200, headers: { "Content-Type": "application/json" } }
+  );
 };
